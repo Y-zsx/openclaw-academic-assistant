@@ -10,10 +10,11 @@ description: 学术科研助手技能。支持论文参考文献格式化（GB/T
 本技能帮助大学生和科研人员高效处理学术写作和科研管理任务，主要支持：
 
 1. **参考文献格式化** - 自动转换为 GB/T 7714 标准格式
-2. **文献管理** - 解析 BibTeX/EndNote/NoteExpress 导出文件
-3. **毕设进度管理** - 任务分解 + 时间节点提醒
-4. **实验数据处理** - CSV/Excel 数据可视化
-5. **查重降重** - 报告解读 + 修改建议
+2. **BibTeX 批量解析** - 解析 .bib 文件，支持知网/万方/Google Scholar 导出
+3. **文献管理** - 解析 EndNote/NoteExpress/RefWorks 导出文件
+4. **毕设进度管理** - 任务分解 + 时间节点提醒
+5. **实验数据处理** - CSV/Excel 数据可视化
+6. **查重降重** - 报告解读 + 修改建议
 
 ## 快速开始
 
@@ -31,9 +32,26 @@ description: 学术科研助手技能。支持论文参考文献格式化（GB/T
 [2] 张三，李四。人工智能综述 [J]. 计算机学报，2024.
 ```
 
-### 文献文件解析
+### BibTeX 文件批量解析
 
-用户上传 BibTeX/EndNote 导出文件，自动解析并格式化。
+用户上传 .bib 文件，自动解析所有文献并格式化：
+
+```
+用户：帮我格式化这个 bib 文件里的所有文献
+
+助手：
+[1] VASWANI A, SHAZEER N, PARMAR N, et al. Attention is all you need[J]. Advances in neural information processing systems, 2017, 30.
+[2] GOODFELLOW I, BENGIO Y, COURVILLE A. Deep learning[M]. Cambridge: MIT press, 2016.
+[3] 张三。基于深度学习的自然语言处理研究 [D]. 北京：清华大学，2023.
+...
+共 5 篇文献，已格式化完成。
+```
+
+**支持的导出来源：**
+- Google Scholar（导出 BibTeX）
+- 知网（EndNote 格式）
+- 万方（RefWorks 格式）
+- DBLP、arXiv 等
 
 ### 毕设进度跟踪
 
@@ -187,6 +205,41 @@ Pages: 5998-6008
 **使用方法：**
 ```bash
 python scripts/format_reference.py --input "文献信息" --style gbt7714
+```
+
+**示例：**
+```bash
+# 单条文献
+python scripts/format_reference.py -i "作者：张三，标题：深度学习，期刊：计算机学报，年份：2024"
+
+# 批量处理
+python scripts/format_reference.py -f references.txt
+```
+
+### scripts/bibtex_parser.py
+BibTeX 文件解析脚本，批量转换 .bib 文件为 GB/T 7714 格式。
+
+**使用方法：**
+```bash
+python scripts/bibtex_parser.py --input references.bib --output formatted.txt
+```
+
+**参数：**
+- `-i, --input`: 输入 .bib 文件路径（必需）
+- `-o, --output`: 输出文件路径（可选）
+- `--with-citekey`: 显示引用键
+- `--count`: 只显示文献数量
+
+**示例：**
+```bash
+# 解析并输出到控制台
+python scripts/bibtex_parser.py -i references.bib
+
+# 保存到文件
+python scripts/bibtex_parser.py -i references.bib -o formatted.txt
+
+# 显示引用键
+python scripts/bibtex_parser.py -i references.bib --with-citekey
 ```
 
 ### scripts/thesis_timeline.py

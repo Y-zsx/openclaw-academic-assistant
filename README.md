@@ -2,6 +2,7 @@
 
 > OpenClaw 技能插件 - 为大学生和科研人员提供学术写作辅助工具
 
+[![Version](https://img.shields.io/badge/version-1.1-blue.svg)](https://github.com/Y-zsx/openclaw-academic-assistant)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-Skill-green.svg)](https://github.com/openclaw/openclaw)
 
@@ -11,9 +12,11 @@
 
 **核心功能：**
 - ✅ 参考文献格式化（GB/T 7714-2015 标准）
+- ✅ BibTeX 批量解析（支持知网/Google Scholar 导出）
 - ✅ 毕设/论文时间规划
 - ✅ 实验数据可视化
-- ✅ 查重降重建议（规划中）
+- ✅ 论文写作模板
+- 🔄 查重降重建议（开发中）
 
 ## 🚀 快速开始
 
@@ -137,12 +140,12 @@ python3 scripts/data_visualize.py -i test.csv -t line
 | 功能 | 状态 | 版本 |
 |------|------|------|
 | 中文文献格式化 | ✅ | v1.0 |
-| 英文文献格式化 | ⚠️ | v1.0 |
+| 英文文献格式化 | ✅ | v1.1 |
 | 批量处理 | ✅ | v1.0 |
 | 毕设时间规划 | ✅ | v1.0 |
 | 数据可视化 | ✅ | v1.0 |
-| BibTeX 解析 | 🔄 | v1.1 规划 |
-| 论文模板 | 🔄 | v1.1 规划 |
+| BibTeX 解析 | ✅ | v1.1 |
+| 论文模板 | ✅ | v1.1 |
 | 查重报告解读 | 🔄 | v1.2 规划 |
 
 ## 🤝 贡献
