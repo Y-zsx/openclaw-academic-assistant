@@ -1,6 +1,6 @@
 ---
 name: academic-assistant
-description: 学术科研助手 | Academic Research Assistant. 当用户提到：参考文献格式化、GB/T 7714、BibTeX 解析、.bib 文件、论文写作、毕业设计、文献管理、知网、万方、Google Scholar、EndNote、NoteExpress、数据可视化、查重降重、论文模板、学术写作、期刊格式、学位论文、引用格式化、参考文献列表 | When user mentions: reference formatting, GB/T 7714, BibTeX parsing, .bib files, thesis writing, graduation project, literature management, CNKI, Wanfang, Google Scholar, EndNote, NoteExpress, data visualization, plagiarism check, paper template, academic writing, journal format, dissertation, citation formatting, reference list. 支持运行 Python 脚本自动处理 | Supports running Python scripts for automatic processing.
+description: Academic Research Assistant for reference formatting, BibTeX parsing, thesis planning, and data visualization. Supports GB/T 7714, CNKI, Google Scholar, EndNote. 学术科研助手，支持参考文献格式化、BibTeX 解析、毕设规划、数据可视化。
 ---
 
 # Academic Assistant - 学术助手
