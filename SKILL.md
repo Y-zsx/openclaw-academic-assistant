@@ -1,129 +1,178 @@
 ---
 name: academic-assistant
-description: 学术科研助手。当用户提到：参考文献格式化、GB/T 7714 格式、BibTeX 解析、.bib 文件转换、论文写作、毕业设计、毕设规划、文献管理、知网导出、万方导出、Google Scholar、EndNote、NoteExpress、实验数据可视化、查重降重、论文模板、学术写作、期刊论文格式、学位论文格式、引用格式化、参考文献列表时使用此技能。支持运行 Python 脚本自动处理文献和生成毕设计划。
+description: 学术科研助手 | Academic Research Assistant. 当用户提到：参考文献格式化、GB/T 7714、BibTeX 解析、.bib 文件、论文写作、毕业设计、文献管理、知网、万方、Google Scholar、EndNote、NoteExpress、数据可视化、查重降重、论文模板、学术写作、期刊格式、学位论文、引用格式化、参考文献列表 | When user mentions: reference formatting, GB/T 7714, BibTeX parsing, .bib files, thesis writing, graduation project, literature management, CNKI, Wanfang, Google Scholar, EndNote, NoteExpress, data visualization, plagiarism check, paper template, academic writing, journal format, dissertation, citation formatting, reference list. 支持运行 Python 脚本自动处理 | Supports running Python scripts for automatic processing.
 ---
 
 # Academic Assistant - 学术助手
 
-## 核心功能
+## 核心功能 | Core Features
 
-本技能帮助大学生和科研人员高效处理学术写作和科研管理任务，主要支持：
+本技能帮助大学生和科研人员高效处理学术写作和科研管理任务 | This skill helps students and researchers efficiently handle academic writing and research management tasks.
 
-1. **参考文献格式化** - 自动转换为 GB/T 7714 标准格式
-2. **BibTeX 批量解析** - 解析 .bib 文件，支持知网/万方/Google Scholar 导出
-3. **文献管理** - 解析 EndNote/NoteExpress/RefWorks 导出文件
-4. **毕设进度管理** - 任务分解 + 时间节点提醒
-5. **实验数据处理** - CSV/Excel 数据可视化
-6. **查重降重** - 报告解读 + 修改建议
+**主要支持 | Main Features:**
 
-## 快速开始
+1. **参考文献格式化** - 自动转换为 GB/T 7714 标准格式 | Reference Formatting - Auto-convert to GB/T 7714 standard
+2. **BibTeX 批量解析** - 解析 .bib 文件，支持知网/万方/Google Scholar 导出 | BibTeX Batch Parsing - Parse .bib files from CNKI/Wanfang/Google Scholar
+3. **文献管理** - 解析 EndNote/NoteExpress/RefWorks 导出文件 | Literature Management - Parse EndNote/NoteExpress/RefWorks exports
+4. **毕设进度管理** - 任务分解 + 时间节点提醒 | Thesis Planning - Task breakdown + timeline reminders
+5. **实验数据处理** - CSV/Excel 数据可视化 | Data Visualization - CSV/Excel chart generation
+6. **查重降重** - 报告解读 + 修改建议 | Plagiarism Check - Report analysis + revision suggestions
 
-### 参考文献格式化
+---
 
-用户发送文献列表，自动返回 GB/T 7714 格式：
+## Quick Start | 快速开始
 
+### BibTeX File Parsing | BibTeX 文件解析
+
+Parse all references from .bib file:
+
+**Input:**
 ```
-用户：帮我格式化这些参考文献：
-[1] Smith J, Johnson A. Deep Learning for NLP. Nature, 2023.
-[2] 张三，李四。人工智能综述。计算机学报，2024.
-
-助手：
-[1] SMITH J, JOHNSON A. Deep Learning for NLP[J]. Nature, 2023.
-[2] 张三，李四。人工智能综述 [J]. 计算机学报，2024.
+Help me parse this bib file
+@article{vaswani2017attention,
+  title={Attention is all you need},
+  author={Vaswani, Ashish and Shazeer, Noam and Parmar, Niki},
+  journal={Advances in neural information processing systems},
+  volume={30},
+  year={2017}
+}
 ```
 
-### BibTeX 文件批量解析
-
-用户上传 .bib 文件，自动解析所有文献并格式化：
-
+**Output:**
 ```
-用户：帮我格式化这个 bib 文件里的所有文献
-
-助手：
 [1] VASWANI A, SHAZEER N, PARMAR N, et al. Attention is all you need[J]. Advances in neural information processing systems, 2017, 30.
-[2] GOODFELLOW I, BENGIO Y, COURVILLE A. Deep learning[M]. Cambridge: MIT press, 2016.
-[3] 张三。基于深度学习的自然语言处理研究 [D]. 北京：清华大学，2023.
+```
+
+### Reference Formatting | 参考文献格式化
+
+**Input:**
+```
+作者：张三，李四，标题：深度学习研究进展，期刊：计算机学报，年份：2024, 卷：47, 期：3, 页码：123-135
+```
+
+**Output:**
+```
+张三，李四. 深度学习研究进展 [J]. 计算机学报，2024, 47(3): 123-135.
+```
+
+### Thesis Timeline | 毕设时间规划
+
+**Input:**
+```
+我 6 月 15 日答辩，帮我规划毕设进度 | My defense is on June 15, help me plan my thesis timeline
+```
+
+**Output:**
+```
+📅 本科毕设计划 | Undergraduate Thesis Plan（距离答辩还有 106 天 | 106 days until defense）
+
+【第 1 阶段】开题 + 文献综述（02-28 - 03-15）| Phase 1: Proposal + Literature Review
+- 确定选题方向 | Determine research topic
+- 完成文献检索和阅读（至少 20 篇）| Complete literature search and reading (at least 20 papers)
+- 撰写开题报告 | Write proposal report
+- 开题答辩 | Proposal defense
+
+【第 2 阶段】实验/开发（03-15 - 04-21）| Phase 2: Experiment/Development
 ...
-共 5 篇文献，已格式化完成。
 ```
 
-**支持的导出来源：**
-- Google Scholar（导出 BibTeX）
-- 知网（EndNote 格式）
-- 万方（RefWorks 格式）
-- DBLP、arXiv 等
+---
 
-### 毕设进度跟踪
+## Scripts | 脚本工具
 
-```
-用户：我 6 月 1 日答辩，现在 2 月 28 日，帮我规划毕设进度
+### format_reference.py
+Reference formatting script, supports multiple input formats to GB/T 7714.
 
-助手：
-距离答辩还有 93 天，建议时间节点：
-- 3 月 15 日：完成文献综述
-- 4 月 1 日：完成实验/开发
-- 4 月 20 日：完成初稿
-- 5 月 10 日：完成修改
-- 5 月 25 日：定稿 + 查重
-- 6 月 1 日：答辩
+**Usage | 使用方法:**
+```bash
+python scripts/format_reference.py -i "作者：张三，标题：深度学习，期刊：计算机学报，年份：2024"
 ```
 
-## 工作流程
+### bibtex_parser.py
+BibTeX file parser, batch convert .bib files to GB/T 7714 format.
 
-### 1. 参考文献处理流程
-
-```
-用户提供文献 → 识别来源格式 → 解析字段 → 应用 GB/T 7714 模板 → 返回结果
-```
-
-**支持的文献类型：**
-- 期刊论文 [J]
-- 会议论文 [C]
-- 学位论文 [D]
-- 专著 [M]
-- 专利 [P]
-- 标准 [S]
-- 电子资源 [EB/OL]
-
-**必填字段检查：**
-- 作者/译者
-- 标题
-- 来源（期刊名/会议名/出版社）
-- 年份
-- 卷期页码（如适用）
-
-### 2. 毕设进度管理流程
-
-```
-用户输入答辩日期 → 倒推时间节点 → 生成任务清单 → 设置提醒
+**Usage | 使用方法:**
+```bash
+python scripts/bibtex_parser.py -i references.bib -o formatted.txt
 ```
 
-**标准时间分配（本科毕设）：**
-| 阶段 | 占比 | 主要内容 |
-|------|------|----------|
-| 选题 + 开题 | 15% | 文献调研、开题报告 |
-| 实验/开发 | 35% | 数据采集、系统实现 |
-| 论文写作 | 30% | 初稿、修改、定稿 |
-| 答辩准备 | 20% | PPT、预答辩、正式答辩 |
+**Options | 选项:**
+- `-i, --input`: Input .bib file path | 输入文件路径
+- `-o, --output`: Output file path | 输出文件路径
+- `--with-citekey`: Show citation keys | 显示引用键
+- `--count`: Show count only | 只显示数量
 
-### 3. 实验数据处理流程
+### thesis_timeline.py
+Thesis timeline planner, generate schedule based on defense date.
 
+**Usage | 使用方法:**
+```bash
+python scripts/thesis_timeline.py -d 2026-06-15 -t undergraduate
 ```
-用户上传数据文件 → 自动识别列名 → 选择图表类型 → 生成可视化代码 → 输出图表
+
+**Options | 选项:**
+- `-d, --defense-date`: Defense date (YYYY-MM-DD) | 答辩日期
+- `-t, --type`: Thesis type (undergraduate/master) | 论文类型
+
+### data_visualize.py
+Data visualization script, generate charts from CSV/Excel files.
+
+**Usage | 使用方法:**
+```bash
+python scripts/data_visualize.py -i data.csv -t line -o plot.png
 ```
 
-**支持的图表类型：**
-- 折线图（趋势分析）
-- 柱状图（对比分析）
-- 散点图（相关性）
-- 热力图（多维数据）
-- 箱线图（分布分析）
+**Chart Types | 图表类型:**
+- `line` - Line chart | 折线图
+- `bar` - Bar chart | 柱状图
+- `scatter` - Scatter plot | 散点图
+- `heatmap` - Heatmap | 热力图
+- `box` - Box plot | 箱线图
 
-## 使用示例
+### run.py (Recommended | 推荐)
+One-click runner with interactive and CLI modes.
 
-### 示例 1：单篇文献格式化
+**Usage | 使用方法:**
+```bash
+# Interactive mode | 交互模式
+python run.py
 
-**用户输入：**
+# CLI mode | 命令行模式
+python run.py --mode bib -i references.bib
+python run.py --mode ref -i "作者：张三，标题：测试"
+python run.py --mode plan -i 2026-06-15
+```
+
+---
+
+## Supported Formats | 支持格式
+
+### Reference Types | 文献类型
+- Journal papers [J] | 期刊论文
+- Conference papers [C] | 会议论文
+- Theses [D] | 学位论文
+- Books [M] | 专著
+- Patents [P] | 专利
+- Standards [S] | 标准
+- Electronic resources [EB/OL] | 电子资源
+
+### Export Sources | 导出来源
+- CNKI (EndNote format) | 知网
+- Wanfang (RefWorks format) | 万方
+- Google Scholar (BibTeX) | 谷歌学术
+- DBLP
+- arXiv
+- EndNote
+- NoteExpress
+- RefWorks
+
+---
+
+## Examples | 使用示例
+
+### Example 1: Single Reference | 单篇文献
+
+**Input | 输入:**
 ```
 帮我格式化这篇文献：
 Title: Attention Is All You Need
@@ -134,175 +183,126 @@ Volume: 30
 Pages: 5998-6008
 ```
 
-**助手输出：**
+**Output | 输出:**
 ```
-[1] VASWANI A, SHAZEER N, PARMAR N, et al. Attention Is All You Need[C]//Advances in Neural Information Processing Systems. 2017, 30: 5998-6008.
-```
-
-### 示例 2：批量文献处理
-
-**用户输入：**
-```
-这些文献帮我按 GB/T 7714 格式化：
-1. Goodfellow I, Bengio Y, Courville A. Deep Learning[M]. MIT Press, 2016.
-2. 周志华。机器学习 [M]. 清华大学出版社，2016.
-3. He K, Zhang X, Ren S, et al. Deep Residual Learning for Image Recognition[C]//CVPR. 2016: 770-778.
+VASWANI A, SHAZEER N, PARMAR N, et al. Attention Is All You Need[J]. Advances in Neural Information Processing Systems, 2017, 30: 5998-6008.
 ```
 
-**助手输出：**
-```
-[1] GOODFELLOW I, BENGIO Y, COURVILLE A. Deep Learning[M]. MIT Press, 2016.
-[2] 周志华。机器学习 [M]. 清华大学出版社，2016.
-[3] HE K, ZHANG X, REN S, et al. Deep Residual Learning for Image Recognition[C]//Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2016: 770-778.
+### Example 2: Batch Processing | 批量处理
+
+**Input | 输入:**
+```python
+# references.bib
+@article{vaswani2017attention,
+  title={Attention is all you need},
+  author={Vaswani, Ashish and Shazeer, Noam and Parmar, Niki},
+  journal={Advances in neural information processing systems},
+  volume={30},
+  year={2017}
+}
+
+@book{goodfellow2016deep,
+  title={Deep learning},
+  author={Goodfellow, Ian and Bengio, Yoshua and Courville, Aaron},
+  year={2016},
+  publisher={MIT press}
+}
 ```
 
-### 示例 3：毕设规划
+**Command | 命令:**
+```bash
+python scripts/bibtex_parser.py -i references.bib
+```
 
-**用户输入：**
+**Output | 输出:**
+```
+[1] VASWANI A, SHAZEER N, PARMAR N, et al. Attention is all you need[J]. 2017, 30.
+[2] GOODFELLOW I, BENGIO Y, COURVILLE A. Deep learning[M]. MIT press, 2016.
+
+📊 共 2 篇文献，成功 2 篇 | Total: 2 references, 2 succeeded
+```
+
+### Example 3: Thesis Planning | 毕设规划
+
+**Input | 输入:**
 ```
 我是软件工程专业的，6 月 15 日答辩，做一个毕设时间规划
+I'm a software engineering major, defense on June 15, create a thesis timeline
 ```
 
-**助手输出：**
+**Output | 输出:**
 ```
-📅 软件工程专业毕设计划（距离答辩还有 108 天）
+📅 本科毕设计划 | Undergraduate Thesis Plan（距离答辩还有 108 天 | 108 days until defense）
 
-【第一阶段】开题 + 文献综述（2 月 28 日 - 3 月 20 日）
-- 确定选题方向
-- 完成文献检索和阅读（至少 20 篇）
-- 撰写开题报告
-- 开题答辩
+【第 1 阶段】开题 + 文献综述（02-28 - 03-20）| Phase 1: Proposal + Literature Review
+- 确定选题方向 | Determine research topic
+- 完成文献检索和阅读（至少 20 篇）| Complete literature review (at least 20 papers)
+- 撰写开题报告 | Write proposal report
+- 开题答辩 | Proposal defense
 
-【第二阶段】系统开发（3 月 21 日 - 4 月 25 日）
-- 需求分析 + 系统设计
-- 编码实现
-- 单元测试 + 集成测试
-- 完成核心功能
-
-【第三阶段】论文写作（4 月 26 日 - 5 月 20 日）
-- 撰写初稿（建议 1.5 万字以上）
-- 导师修改意见
-- 二稿修改
-- 格式审查
-
-【第四阶段】答辩准备（5 月 21 日 - 6 月 15 日）
-- 论文定稿 + 查重（重复率<15%）
-- 制作答辩 PPT
-- 预答辩演练
-- 正式答辩
-
-⚠️ 关键节点提醒：
-- 4 月 25 日：完成所有开发工作
-- 5 月 20 日：提交论文终稿
-- 6 月 1 日：查重截止
+【第 2 阶段】系统开发（03-21 - 04-25）| Phase 2: System Development
+...
 ```
 
-## 脚本工具
+---
 
-### scripts/format_reference.py
-参考文献格式化核心脚本，支持多种输入格式转换为 GB/T 7714。
+## Requirements | 环境要求
 
-**使用方法：**
+- Python 3.8+
+- OpenClaw Gateway
+
+### Optional Dependencies | 可选依赖
+
+For data visualization:
 ```bash
-python scripts/format_reference.py --input "文献信息" --style gbt7714
+pip install pandas matplotlib openpyxl seaborn
 ```
 
-**示例：**
-```bash
-# 单条文献
-python scripts/format_reference.py -i "作者：张三，标题：深度学习，期刊：计算机学报，年份：2024"
+---
 
-# 批量处理
-python scripts/format_reference.py -f references.txt
-```
+## Resources | 资源文件
 
-### scripts/bibtex_parser.py
-BibTeX 文件解析脚本，批量转换 .bib 文件为 GB/T 7714 格式。
+- `references/gbt7714-standard.md` - GB/T 7714 complete standard | 完整标准文档
+- `references/thesis-template.md` - Thesis writing template | 论文写作模板
 
-**使用方法：**
-```bash
-python scripts/bibtex_parser.py --input references.bib --output formatted.txt
-```
+---
 
-**参数：**
-- `-i, --input`: 输入 .bib 文件路径（必需）
-- `-o, --output`: 输出文件路径（可选）
-- `--with-citekey`: 显示引用键
-- `--count`: 只显示文献数量
+## FAQ | 常见问题
 
-**示例：**
-```bash
-# 解析并输出到控制台
-python scripts/bibtex_parser.py -i references.bib
+### Q: How to handle English author names? | 如何处理英文作者姓名？
+A: Surname in uppercase, given names abbreviated (no periods). Example: SMITH J
 
-# 保存到文件
-python scripts/bibtex_parser.py -i references.bib -o formatted.txt
+### Q: What if more than 3 authors? | 超过 3 个作者怎么处理？
+A: List first 3 authors, then add ", et al." (English) or ", 等" (Chinese)
 
-# 显示引用键
-python scripts/bibtex_parser.py -i references.bib --with-citekey
-```
+### Q: How to check format correctness? | 如何检查格式是否正确？
+A: Use the built-in format check feature or refer to `references/gbt7714-standard.md`
 
-### scripts/thesis_timeline.py
-毕设时间规划脚本，根据答辩日期倒推各阶段节点。
+### Q: Can I process multiple files at once? | 可以批量处理多个文件吗？
+A: Yes, put all references in one .bib file and use `bibtex_parser.py`
 
-**使用方法：**
-```bash
-python scripts/thesis_timeline.py --defense-date 2026-06-15 --type undergraduate
-```
+---
 
-### scripts/data_visualize.py
-实验数据可视化脚本，支持 CSV/Excel 文件生成图表。
+## Version | 版本
 
-**使用方法：**
-```bash
-python scripts/data_visualize.py --input data.csv --type line --output plot.png
-```
+Current: v1.2.0
 
-## 参考文献格式标准
+See [CHANGELOG.md](CHANGELOG.md) for details.
 
-### GB/T 7714-2015 核心规则
+---
 
-详见 `references/gbt7714-standard.md`
+## License | 许可证
 
-**快速参考：**
+MIT License
 
-**期刊论文 [J]：**
-```
-[序号] 主要责任者。题名 [J]. 期刊名，年，卷 (期): 起止页码.
-```
+---
 
-**会议论文 [C]：**
-```
-[序号] 主要责任者。题名 [C]//会议录名。出版地：出版者，出版年：起止页码.
-```
+## Contact | 联系方式
 
-**学位论文 [D]：**
-```
-[序号] 主要责任者。题名 [D]. 保存地点：保存单位，年份.
-```
+- GitHub: https://github.com/Y-zsx/openclaw-academic-assistant
+- Issues: https://github.com/Y-zsx/openclaw-academic-assistant/issues
+- OpenClaw Community: https://discord.com/invite/clawd
 
-**专著 [M]：**
-```
-[序号] 主要责任者。题名 [M]. 版本。出版地：出版者，出版年：起止页码.
-```
+---
 
-## 常见问题
-
-### Q: 如何处理英文文献的作者姓名？
-A: 英文作者姓全大写，名缩写（无标点），如：SMITH J
-
-### Q: 超过 3 个作者怎么处理？
-A: 列出前 3 位，后加", et al."（英文）或", 等"（中文）
-
-### Q: 电子资源怎么标注？
-A: 使用 [EB/OL] 类型，需包含 URL 和访问日期
-
-### Q: 如何检查格式是否正确？
-A: 使用技能内置的格式检查功能，或参考 `references/gbt7714-standard.md`
-
-## 扩展资源
-
-- `references/gbt7714-standard.md` - GB/T 7714 完整标准文档
-- `references/thesis-template.md` - 毕业论文通用模板
-- `references/common-journals.md` - 常见期刊 abbreviations
-- `assets/thesis-ppt-template.pptx` - 答辩 PPT 模板
+**Made with 🦞 by Academic Assistant Team**
